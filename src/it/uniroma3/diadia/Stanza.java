@@ -104,15 +104,14 @@ public class Stanza {
      * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
      */
     public boolean addAttrezzo(Attrezzo attrezzo) {
-    	return true;
-        /*if (this.numeroAttrezzi < NUMERO_MASSIMO_ATTREZZI) {
+        if (this.numeroAttrezzi < NUMERO_MASSIMO_ATTREZZI) { 
         	this.attrezzi[numeroAttrezzi] = attrezzo;
         	this.numeroAttrezzi++;
         	return true;
         }
         else {
         	return false;
-        }*/
+        }
     }
 
    /**
@@ -129,7 +128,8 @@ public class Stanza {
     			risultato.append(" " + direzione);
     	risultato.append("\nAttrezzi nella stanza: ");
     	for (Attrezzo attrezzo : this.attrezzi) {
-    		risultato.append(attrezzo.toString()+" ");
+    		if(attrezzo!= null)
+    			risultato.append(attrezzo.toString()+" ");
     	}
     	return risultato.toString();
     }
@@ -157,10 +157,14 @@ public class Stanza {
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo attrezzoCercato;
+		
 		attrezzoCercato = null;
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
-				attrezzoCercato = attrezzo;
+		
+		for (int i=0; i<this.attrezzi.length;i++) {
+			if(this.attrezzi[i] != null) {
+				if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
+					attrezzoCercato = this.attrezzi[i];
+			}
 		}
 		return attrezzoCercato;	
 	}
@@ -171,7 +175,14 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		// TODO da implementare
+		for(int i=0;i<this.attrezzi.length;i++) {
+			if(this.attrezzi[i].getNome().equals(attrezzo.getNome())) {
+				this.attrezzi[i] = null;
+				return true;
+			}
+		}
+		
+		
 		return false;
 	}
 

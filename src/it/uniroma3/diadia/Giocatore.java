@@ -19,4 +19,16 @@ public class Giocatore {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;		
 	}	
+	
+	public boolean addAttrezzo(Attrezzo attrezzo) {
+        this.borsa.addAttrezzo(attrezzo);
+        return true;
+       
+	}
+	
+	public boolean removeAttrezzo(Attrezzo attrezzo) {
+        this.borsa.removeAttrezzo(attrezzo.getNome());
+        return true;
+       
+	}
 }

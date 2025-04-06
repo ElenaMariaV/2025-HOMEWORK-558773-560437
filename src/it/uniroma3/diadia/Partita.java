@@ -61,6 +61,7 @@ public class Partita {
 	 * Imposta la partita come finita
 	 *
 	 */
+	
 	public void setFinita() {
 		this.finita = true;
 	}
@@ -69,8 +70,12 @@ public class Partita {
 		return this.giocatore.getCfu();
 	}
 	
-	public void setGiocatore(int cfu) {
+	public void setCfu(int cfu) {
 		this.giocatore.setCfu(cfu);
+	}
+	
+	public Giocatore getGiocatore() {
+		return this.giocatore;
 	}
 
 }

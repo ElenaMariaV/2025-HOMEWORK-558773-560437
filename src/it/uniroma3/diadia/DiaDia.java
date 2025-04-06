@@ -26,7 +26,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"vai", "aiuto", "fine","prendi","posa"};
 
 	private Partita partita;
 
@@ -61,6 +61,10 @@ public class DiaDia {
 			this.vai(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
+		else if(comandoDaEseguire.getNome().equals("prendi"))
+			this.prendi(comandoDaEseguire.getParametro());
+		else if(comandoDaEseguire.getNome().equals("posa"))
+			this.posa(comandoDaEseguire.getParametro());
 		else
 			System.out.println("Comando sconosciuto");
 		if (this.partita.vinta()) {
@@ -100,6 +104,7 @@ public class DiaDia {
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
 
+
 	/**
 	 * Comando "Fine".
 	 */
@@ -110,5 +115,42 @@ public class DiaDia {
 	public static void main(String[] argc) {
 		DiaDia gioco = new DiaDia();
 		gioco.gioca();
+	}
+	
+	private void prendi(String attrezzo) {
+		if(attrezzo==null){
+			System.out.println("Che attrezzo vuoi prendere?");
+			return;
+		}
+		
+		
+		//Attrezzo attrezzoDaPrendere = null;
+		
+		Attrezzo attrezzoDaPrendere=this.partita.getStanzaCorrente().getAttrezzo(attrezzo);
+		if (attrezzoDaPrendere == null)
+			System.out.println("Attrezzo inesistente");
+		else {
+			
+			this.partita.getGiocatore().addAttrezzo(attrezzoDaPrendere);
+			this.partita.getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
+			
+		}
+		System.out.println(partita.getStanzaCorrente().getDescrizione());
+	}
+	
+	private void posa(String attrezzo) {
+		if(attrezzo != null)
+			System.out.println("Che attrezzo vuoi posare?");
+		Attrezzo attrezzoDaPosare = null;
+		
+		attrezzoDaPosare=this.partita.getStanzaCorrente().getAttrezzo(attrezzo);
+		if (attrezzoDaPosare == null)
+			System.out.println("Attrezzo inesistente");
+		else {
+			this.partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare);
+			this.partita.getGiocatore().removeAttrezzo(attrezzoDaPosare);
+			
+		}
+		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
 }

@@ -2,6 +2,9 @@ package it.uniroma3.diadia;
 
 import java.util.Scanner;
 
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
+
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
@@ -139,7 +142,7 @@ public class DiaDia {
 	}
 	
 	private void posa(String attrezzo) {
-		if(attrezzo != null)
+		if(attrezzo == null)
 			System.out.println("Che attrezzo vuoi posare?");
 		Attrezzo attrezzoDaPosare = null;
 		
